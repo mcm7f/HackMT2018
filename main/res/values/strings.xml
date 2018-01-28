@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">TestMic2</string>
+    <string-array name="key_array">
+        <item>C</item>
+        <item>F</item>
+        <item>B♭</item>
+        <item>E♭</item>
+        <item>A♭</item>
+        <item>D♭</item>
+        <item>F♯</item>
+        <item>B</item>
+        <item>E</item>
+        <item>A</item>
+        <item>D</item>
+        <item>G</item>
+    </string-array>
+    <string-array name="note_array">
+        <item>A♭/G♯</item>
+        <item>A</item>
+        <item>B♭/A♯</item>
+        <item>B</item>
+        <item>C</item>
+        <item>D♭/C♯</item>
+        <item>D</item>
+        <item>E♭/D♯</item>
+        <item>E</item>
+        <item>F</item>
+        <item>G♭/F♯</item>
+        <item>G</item>
+    </string-array>
+</resources>
