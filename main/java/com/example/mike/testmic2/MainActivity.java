@@ -2,6 +2,7 @@ package com.example.mike.testmic2;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -44,15 +45,15 @@ public class MainActivity extends AppCompatActivity {
         bSound.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
-                Harmony h = new Harmony( "C", "E♭");
-                String[] result = h.FindHarmony();
-                String printResult = result[0]+result[1]+result[2];
+                //Harmony h = new Harmony( "C", "E♭");
+                //String[] result = h.FindHarmony();
+                //String printResult = result[0]+result[1]+result[2];
                 //final TextView tv = (TextView) findViewById(R.id.label);
                 //tv.setText(printResult);
 
-                a4sound.start();
-                g4sound.start();
-                csh4sound.start();
+                //a4sound.start();
+                //g4sound.start();
+                //csh4sound.start();
             }
         });
 
@@ -97,72 +98,81 @@ public class MainActivity extends AppCompatActivity {
 
 
                 Harmony h = new Harmony(selectedNote, selectedKey);
-                String[] result = h.FindHarmony();
-                if( result[0].equals("S") )
+                String[][] results = h.FindHarmony();
+                if( results[0][0].equals("S") )
                 {
                     h.setNote(selectedNoteAlt);
-                    result = h.FindHarmony();
-                    Toast.makeText(getApplicationContext(), "Using Alt note syntax ("+selectedNoteAlt+")", Toast.LENGTH_SHORT).show();
+                    results = h.FindHarmony();
+                    //Toast.makeText(getApplicationContext(), "Using Alt note syntax ("+selectedNoteAlt+")", Toast.LENGTH_SHORT).show();
                 }
+
+                for( int i = 0; i < 3; i++ )
+                {
+                    for( int j = 0; j < 3; j++ )
+                    {
+                        Log.d("RESULTS", Integer.toString(i) + "," + Integer.toString(j) + ": " + results[i][j]);
+                    }
+                }
+
 
                 int count = 0;
 
-                if( h.FindIndex(result, "A") > 0 )
+                if( h.FindIndex(results[0], "A") > 0 )
                 {
                     a4sound.start();
                     count++;
                 }
-                if( h.FindIndex(result, "B") > 0 )
+                if( h.FindIndex(results[0], "B") > 0 )
                 {
                     b4sound.start();
                     count++;
                 }
-                if( h.FindIndex(result, "C") > 0 )
+                if( h.FindIndex(results[0], "C") > 0 )
                 {
                     c4sound.start();
                     count++;
                 }
-                if( h.FindIndex(result, "D") > 0 )
+                if( h.FindIndex(results[0], "D") > 0 )
                 {
                     d4sound.start();
                     count++;
                 }
-                if( h.FindIndex(result, "E") > 0 )
+                if( h.FindIndex(results[0], "E") > 0 )
                 {
                     e4sound.start();
                     count++;
                 }
-                if( h.FindIndex(result, "F") > 0 )
+                if( h.FindIndex(results[0], "F") > 0 )
                 {
                     f4sound.start();
                     count++;
                 }
-                if( h.FindIndex(result, "G") > 0 )
+                if( h.FindIndex(results[0], "G") > 0 )
                 {
                     g4sound.start();
                     count++;
                 }
-                if( h.FindIndex(result, "A♭") > 0 || h.FindIndex(result, "G♯") > 0)
+                if( h.FindIndex(results[0], "A♭") > 0 || h.FindIndex(results[0], "G♯") > 0)
                 {
                     gsh4sound.start();
                     count++;
                 }
-                if( h.FindIndex(result, "B♭") > 0 || h.FindIndex(result, "A♯") > 0)
+                if( h.FindIndex(results[0], "B♭") > 0 || h.FindIndex(results[0], "A♯") > 0)
                 {
                     ash4sound.start();
                     count++;
                 }
-                if( h.FindIndex(result, "D♭") > 0 || h.FindIndex(result, "C♯") > 0)
+                if( h.FindIndex(results[0], "D♭") > 0 || h.FindIndex(results[0], "C♯") > 0)
                 {
                     csh4sound.start();
                     count++;
                 }
-                if( h.FindIndex(result, "E♭") > 0 || h.FindIndex(result, "D♯") > 0)
+                if( h.FindIndex(results[0], "E♭") > 0 || h.FindIndex(results[0], "D♯") > 0)
                 {
                     dsh4sound.start();
                     count++;
                 }
-                if( h.FindIndex(result, "G♭") > 0 || h.FindIndex(result, "F♯") > 0)
+                if( h.FindIndex(results[0], "G♭") > 0 || h.FindIndex(results[0], "F♯") > 0)
                 {
                     fsh4sound.start();
                     count++;
@@ -176,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
                     tv2.setText("No harmony found");
                 }
                 else{
-                    tv2.setText("Found Harmony: " + result[0] + " " + result[1] + " " + result[2]);
+                    tv2.setText("Found Harmony: " + results[0][0] + " " + results[0][1] + " " + results[0][2]);
                 }
 
             }

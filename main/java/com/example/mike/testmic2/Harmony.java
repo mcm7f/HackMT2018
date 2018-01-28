@@ -55,7 +55,7 @@ class Harmony {
     }
 
     // main functionality of class
-    public String[] FindHarmony()
+    public String[][] FindHarmony()
     {
         // 1st step: get index of Key in majorKeys array
         int keyIndex = FindIndex(majorKeys, Key);
@@ -110,8 +110,19 @@ class Harmony {
             Log.d("Scale", scale[i] + ",");
         }
 
+        String[][] results = new String[3][3];
+        for(int i = 0; i < 3; i++ )
+        {
+            for( int j = 0; j < 3; j++ )
+            {
+                results[i][j] = "S";
+            }
+        }
+
+
         if( foundNote)
         {
+            int count = 0;
             // fni = foundNoteIndex
             int fni = FindIndex(scale, Note);
 
@@ -119,55 +130,61 @@ class Harmony {
             {
                 // major chord found
                 String[] result = {scale[0], scale[2], scale[4]};
-                return result;
+                results[count] = result;
+                count++;
             }
 
             if( fni == 1 || fni == 3 || fni == 5 )
             {
                 // minor chord found
                 String[] result = {scale[1], scale[3], scale[5]};
-                return result;
+                results[count] = result;
+                count++;
             }
 
             if( fni == 2 || fni == 4|| fni == 6 )
             {
                 // minor chord found
                 String[] result = {scale[2], scale[4], scale[6]};
-                return result;
+                results[count] = result;
+                count++;
             }
 
             if( fni == 3 || fni == 5 || fni == 0 )
             {
                 // major chord found
                 String[] result = {scale[3], scale[5], scale[0]};
-                return result;
+                results[count] = result;
+                count++;
             }
 
             if( fni == 4 || fni == 6 || fni == 1 )
             {
                 // major chord found
                 String[] result = {scale[4], scale[6], scale[1]};
-                return result;
+                results[count] = result;
+                count++;
             }
 
             if( fni == 5 || fni == 0 || fni == 2 )
             {
                 // minor chord found
                 String[] result = {scale[5], scale[0], scale[2]};
-                return result;
+                results[count] = result;
+                count++;
             }
 
             if( fni == 6 || fni == 1 || fni == 3 )
             {
                 // diminished chord found
                 String[] result = {scale[6], scale[1], scale[3]};
-                return result;
+                results[count] = result;
+                count++;
             }
 
         }
 
-        String[] dud = {"S", "O", "L"};
-        return dud;
+        return results;
 
     }
 
